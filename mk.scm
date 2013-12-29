@@ -167,18 +167,20 @@
 
 (define-syntax run
   (syntax-rules ()
-    ((_ n (x) g0 g ...)
+    ((_ n (q) g0 g ...)
      (take n
        (lambdaf@ ()
-         ((fresh (x) g0 g ...
+         ((fresh (q) g0 g ...
             (lambdag@ (final-c)
-              (let ((z ((reify x) final-c)))
+              (let ((z ((reify q) final-c)))
                 (choice z empty-f))))
-          empty-c))))))
+          empty-c))))
+    ((_ n (q0 q1 q ...) g0 g ...)
+     (run n (x) (fresh (q0 q1 q ...) g0 g ... (== `(,q0 ,q1 ,q ...) x))))))
  
 (define-syntax run*
   (syntax-rules ()
-    ((_ (x) g ...) (run #f (x) g ...))))
+    ((_ (q0 q ...) g0 g ...) (run #f (q0 q ...) g0 g ...))))
  
 (define take
   (lambda (n f)
