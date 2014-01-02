@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+
+cat .io.livecode.ch/header.txt $1 .io.livecode.ch/footer.txt >out.scm
+vicare -f mk.scm -f $2 --script out.scm
