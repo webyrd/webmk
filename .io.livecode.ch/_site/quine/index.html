@@ -140,7 +140,8 @@ as <code>_.0</code>.</p>
           n))))</div>
 
 <p>We normalize all occurrences of <code>(vr &lt;peano&gt;)</code>. to
-a symbol.</p>
+a symbol. In addition, we quote unconstraint logic variables, so that
+strict scheme evaluators like Vicare's accept such terms.</p>
 <div class="live norun" id="normalize" data-lib="normalize-var-name">
 (define unbound?
   (lambda (x)
