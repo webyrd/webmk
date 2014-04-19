@@ -142,6 +142,14 @@ as <code>_.0</code>.</p>
 <p>We normalize all occurrences of <code>(vr &lt;peano&gt;)</code>. to
 a symbol.</p>
 <div class="live norun" id="normalize" data-lib="normalize-var-name">
+(define unbound?
+  (lambda (x)
+    (and (symbol? x)
+         (let ((s (symbol->string x)))
+           (and (> (string-length s) 2)
+                (char=? #\_ (string-ref s 0))
+                (char=? #\. (string-ref s 1)))))))
+
 (define normalize
   (lambda (t)
     (if (list? t)
@@ -150,7 +158,7 @@ a symbol.</p>
             (map normalize t))
         (begin
           (assert (not (eq? 'vr t)))
-          t))))</div>
+          (if (unbound? t) `(quote ,t) t)))))</div>
 
 <h2>Tests</h3>
 
@@ -180,8 +188,7 @@ a symbol.</p>
   (run* (q)
     (ev '()
         quine
-        `(code ,quine))
-    (tm quine))))</div>
+        `(code ,quine)))))</div>
 
 <h3>Quine generation</h3>
 <div class="live" id="quine-gen" data-lib="neq vlookup ev normalize-var-name normalize ok scheme-eval nat tm vl venv">
@@ -194,8 +201,7 @@ a symbol.</p>
    (run 10 (q)
      (ev '()
          q
-         `(code ,q))
-     (tm q)))))</div>
+         `(code ,q))))))</div>
 
 <h3>Twine generation</h3>
 <div class="live" id="twine-gen" data-lib="neq vlookup ev normalize-var-name normalize ok scheme-eval nat tm vl venv">
@@ -212,8 +218,6 @@ a symbol.</p>
      (fresh (a b)
        (== q `(,a ,b))
        (ev '() a `(code ,b))
-       (ev '() b `(code ,a))
-       (tm a)
-       (tm b))))))</div>
+       (ev '() b `(code ,a)))))))</div>
 
 {% endblock %}
