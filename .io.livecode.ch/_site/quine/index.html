@@ -160,7 +160,8 @@ a symbol.</p>
 (define ok
   (lambda (r)
     (assert (not (null? r)))
-    r))</div>
+    (map pretty-print r)
+    (length r)))</div>
 
 <p>We will evaluate the generated terms in Scheme, using <code>eval</code>.</p>
 <div class="live norun" id="scheme-eval">
