@@ -57,7 +57,7 @@ represents any value.  <code>q</code> also remains unbound in
   (== 3 y))</div>
 
 <p>Each of these examples returns <code>(3)</code>; in the
-rightmost example, the <code>y</code> introduced by <code>fresh</code> is
+last example, the <code>y</code> introduced by <code>fresh</code> is
 different from the <code>y</code> introduced by <code>run</code>.</p>
 
 <p>A <code>run</code> expression can return the empty list, indicating that
@@ -180,11 +180,11 @@ indefinitely looking for the non-existent fourth answer.</p>
 
 <p>We extend core miniKanren with four constraint operators: the
 disequality constraint <code>=/=</code> (previously described in the
-context of the cKanren constraint logic programming framework
-cKanren); type constraints <code>symbolo</code> and
+context of the cKanren constraint logic programming framework);
+type constraints <code>symbolo</code> and
 <code>numbero</code>, which are the miniKanren equivalent
 of Scheme's <code>symbol?</code> and <code>number?</code> type predicates; and
-<code>absento</code>}, which ensures a symbol <code>tag</code> does not occur
+<code>absento</code>, which ensures a symbol <code>tag</code> does not occur
 in a term <code>t</code>.
 </p>
 
