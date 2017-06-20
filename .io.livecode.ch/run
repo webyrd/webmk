@@ -4,7 +4,7 @@ set -e
 cat .io.livecode.ch/header.txt $1 .io.livecode.ch/footer.txt >out.scm
 if [ -s $2 ]
 then
-    vicare -f mk.scm -f $2 --script out.scm
+    scheme mk.scm $2 --script out.scm
 else
-    vicare -f mk.scm --script out.scm
+    scheme mk.scm --script out.scm
 fi
