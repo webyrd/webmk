@@ -2,9 +2,13 @@
 set -e
 
 cat .io.livecode.ch/header.txt $1 .io.livecode.ch/footer.txt >out.scm
+echo '(load "mk.scm")' >load.scm
 if [ -s $2 ]
 then
-    vicare -f mk.scm -f $2 --script out.scm
+    mv $2 extra.scm
 else
-    vicare -f mk.scm --script out.scm
+    touch extra.scm
 fi
+cat load.scm extra.scm out.scm >script.scm
+
+scheme mk.scm --script script.scm
