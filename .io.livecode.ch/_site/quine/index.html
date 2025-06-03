@@ -114,9 +114,9 @@
          (ev (cons `(,x0 ,v2) e0) t0 v)))
       ((fresh (t1 t2 c1 c2)
          (== t `(list ,t1 ,t2))
+         (== v `(code ,(list c1 c2)))
          (ev e t1 `(code ,c1))
-         (ev e t2 `(code ,c2))
-         (== v `(code ,(list c1 c2))))))))</div>
+         (ev e t2 `(code ,c2)))))))</div>
 
 <h2>Normalization</h2>
 
